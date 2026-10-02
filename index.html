@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velvet Aroma - Luxury Natural Soaps</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #F5F1E8;
+            color: #2E4433;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        body.lock-scroll {
+            overflow: hidden;
+        }
+        h1, h2, h3, .brand-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Top Announcement Bar */
+        .top-bar {
+            background-color: #2E4433;
+            color: #F5F1E8;
+            text-align: center;
+            padding: 0 10px;
+            font-size: 11px;
+            font-weight: 500;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        /* Sticky Header */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #dbe6d3;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .brand-logo-img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4af37;
+            display: block;
+            flex-shrink: 0;
+            background: #fff;
+        }
+        .brand-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #2E4433;
+            line-height: 1.1;
+            white-space: nowrap;
+            letter-spacing: 0.4px;
+        }
+        .header-icons-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-right: 4px;
+        }
+        .header-icon {
+            font-size: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            position: relative;
+            padding: 4px;
+            color: #2E4433;
+        }
+        .cart-badge, .wish-badge {
+            background-color: #2E4433;
+            color: #F5F1E8;
+            font-size: 8px;
+            padding: 2px 4px;
+            border-radius: 50%;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+
+        /* Poster / Banner Section */
+        .slider-container {
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        @media(min-width: 768px) {
+            .slide img {
+                max-height: 350px;
+            }
+        }
+
+        /* Categories Section */
+        .categories-section {
+            max-width: 1000px;
+            margin: 20px auto 10px auto;
+            padding: 0 12px;
+        }
+        .categories-scroll-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+        .categories-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .category-box-card {
+            min-width: calc(50% - 6px);
+            max-width: 240px;
+            height: 150px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(46,68,51,0.08);
+            border: 1px solid #dbe6d3;
+            background-color: #eee;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .category-box-card:hover {
+            transform: scale(1.02);
+        }
+        .category-box-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .category-overlay-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 16px 8px 8px 8px;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Section Titles */
+        .sec-title {
+            text-align: center;
+            font-size: 20px;
+            color: #2E4433;
+            margin: 20px 0 4px 0;
+        }
+        .sec-sub {
+            text-align: center;
+            font-size: 11px;
+            color: #557a5e;
+            margin-bottom: 12px;
+        }
+
+        /* Products Slider Wrapper */
+        .products-slider-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 12px 20px 12px;
+        }
+        .products-scroll-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+        .products-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .prod-card {
+            min-width: 160px;
+            max-width: 200px;
+            background: #ffffff;
+            border: 1px solid #dbe6d3;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(46,68,51,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .wishlist-heart-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ffffff;
+            border: 1px solid #dbe6d3;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #2E4433;
+            z-index: 5;
+            transition: all 0.2s ease;
+        }
+        .wishlist-heart-btn.active {
+            color: #e74c3c;
+            border-color: #e74c3c;
+        }
+        .prod-cart-overlay-btn {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #ffffff;
+            border: 1px solid #dbe6d3;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            color: #2E4433;
+            z-index: 5;
+        }
+        .prod-card img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .prod-info {
+            padding: 8px;
+        }
+        .badge-bestseller {
+            background: #2E4433;
+            color: #fff;
+            font-size: 8px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+        .stars {
+            color: #d4af37;
+            font-size: 10px;
+            margin-bottom: 2px;
+        }
+        .prod-card h3 {
+            font-size: 12px;
+            color: #2E4433;
+            margin-bottom: 3px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 4px 0;
+        }
+        .current-price {
+            font-size: 13px;
+            font-weight: bold;
+            color: #2E4433;
+        }
+        .original-price {
+            font-size: 10px;
+            color: #888;
+            text-decoration: line-through;
+        }
+        .btn-add-grid {
+            width: calc(100% - 16px);
+            margin: 0 8px 8px 8px;
+            background-color: #2E4433;
+            color: #F5F1E8;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* Full Screen Views & Drawers */
+        .full-page-view {
+            position: fixed;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 6000;
+            transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .full-page-view.open {
+            top: 0;
+        }
+        #productFullPage {
+            z-index: 8500;
+        }
+        #cartFullPage, #checkoutFullPage {
+            z-index: 9500;
+        }
+
+        .fp-top-header {
+            background: #ffffff;
+            border-bottom: 1px solid #dbe6d3;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        /* High-visibility White Close Button (×) */
+        .close-btn {
+            background: #2E4433;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .fp-body-content {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+        .fp-img-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin-bottom: 12px;
+            background-color: #eee;
+            border-radius: 10px;
+        }
+        .fp-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .qty-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .qty-btn {
+            background: #2E4433;
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .qty-number {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2E4433;
+        }
+
+        .fp-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn-fp-cart {
+            flex: 1;
+            background: #2E4433;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .btn-fp-buynow {
+            flex: 1;
+            background: #ff7a00;
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Review Section */
+        .reviews-section {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #dbe6d3;
+            padding: 20px;
+        }
+        .write-review-main-btn {
+            display: block;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 20px auto;
+            background: none;
+            border: 2px solid #2E4433;
+            color: #2E4433;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .review-box {
+            background: #fafbf9;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #dbe6d3;
+            position: relative;
+        }
+        .review-box p {
+            font-style: italic;
+            font-size: 11px;
+            color: #444;
+            margin-bottom: 6px;
+        }
+        .reviewer-name {
+            font-size: 11px;
+            font-weight: bold;
+            color: #2E4433;
+        }
+        .delete-review-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #fce4e4;
+            color: #e74c3c;
+            border: none;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .review-form-box {
+            background: #fafbf9;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #dbe6d3;
+            max-width: 400px;
+            margin: 0 auto 20px auto;
+            display: none;
+            box-shadow: 0 4px 12px rgba(46,68,51,0.08);
+        }
+        .review-form-box.open {
+            display: block;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            border: 1px solid #dbe6d3;
+            border-radius: 6px;
+            font-size: 12px;
+            background: #fff;
+        }
+
+        /* Wishlist Drawer & Mobile Menu Drawers */
+        .wishlist-drawer, .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 350px;
+            height: 100%;
+            background: #fafbf9;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            z-index: 7000;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .wishlist-drawer.open {
+            right: 0;
+        }
+        .mobile-menu-drawer {
+            left: -100%;
+            right: auto;
+            transition: left 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu-drawer.open {
+            left: 0;
+        }
+        .drawer-top {
+            background: #2E4433;
+            color: #F5F1E8;
+            padding: 15px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+        }
+        .drawer-footer {
+            padding: 15px;
+            background: #fff;
+            border-top: 1px solid #dbe6d3;
+        }
+        .btn-checkout {
+            width: 100%;
+            background-color: #ff7a00;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .lang-toggle-btn {
+            background-color: #2E4433;
+            color: #F5F1E8;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 20px 15px 10px 15px;
+            text-align: center;
+            display: block;
+            width: calc(100% - 30px);
+        }
+
+        .cart-item-card {
+            background: #ffffff;
+            border: 1px solid #e5ebd9;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .cart-item-img {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #2E4433;
+            color: #F5F1E8;
+            text-align: center;
+            padding: 20px 12px;
+            margin-top: 30px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar" id="txt-banner">
+        ⚡ FREE Shipping above ₹499! Use coupon PK10 for 10% OFF.
+    </div>
+
+    <!-- Header -->
+    <header>
+        <button onclick="toggleMobileMenu()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #2E4433; padding: 4px;">☰</button>
+        
+        <div class="brand-box">
+            <img src="logo.png" alt="Logo" class="brand-logo-img">
+            <div class="brand-title">Velvet Aroma</div>
+        </div>
+
+        <div class="header-icons-box">
+            <div class="header-icon" onclick="toggleWishlist()" title="Wishlist" style="font-size: 22px; padding: 4px;">♡<span class="wish-badge" id="wish-count">0</span></div>
+            <div class="header-icon" onclick="toggleCart()" title="Cart" style="font-size: 22px; padding: 4px;">🛒<span class="cart-badge" id="cart-count">0</span></div>
+        </div>
+    </header>
+
+    <!-- Poster / Banner -->
+    <div class="slider-container">
+        <div class="slide">
+            <img src="poster.png" alt="Poster">
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories-section">
+        <div class="categories-scroll-container">
+            <div class="category-box-card" onclick="openAllShopPage()">
+                <img src="high-soap.png" alt="Category 1">
+                <div class="category-overlay-text" data-en="Natural Soaps" data-hi="प्राकृतिक साबुन">Natural Soaps</div>
+            </div>
+            <div class="category-box-card" onclick="openAllShopPage()">
+                <img src="small-soap.png" alt="Category 2">
+                <div class="category-overlay-text" data-en="Organic Care" data-hi="ऑर्गेनिक देखभाल">Organic Care</div>
+            </div>
+            <div class="category-box-card" onclick="openAllShopPage()">
+                <img src="high-soap.png" alt="Category 3">
+                <div class="category-overlay-text" data-en="Body Scrubs" data-hi="बॉडी स्क्रब">Body Scrubs</div>
+            </div>
+            <div class="category-box-card" onclick="openAllShopPage()">
+                <img src="small-soap.png" alt="Category 4">
+                <div class="category-overlay-text" data-en="Essential Oils" data-hi="एसेंशियल ऑइल">Essential Oils</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="products-slider-wrapper">
+        <h2 class="sec-title" data-en="Natural Luxury Soaps" data-hi="प्राकृतिक लग्जरी साबुन">Natural Luxury Soaps</h2>
+        <div class="sec-sub" data-en="Handmade with pure ingredients" data-hi="शुद्ध सामग्री के साथ हस्तनिर्मित">Handmade with pure ingredients</div>
+        
+        <div class="products-scroll-container">
+            <!-- Product 1 -->
+            <div class="prod-card">
+                <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Honey Almond Soap', 299, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                <button class="wishlist-heart-btn" id="wishBtn-1" onclick="toggleWishlistItem(event, 'Honey Almond Soap', 299, 'high-soap.png', 'wishBtn-1')">♡</button>
+                <img src="high-soap.png" alt="Soap 1" onclick="openProductPage('Honey Almond Soap', 299, 'high-soap.png', 'A nourishing blend of pure honey and rich almond oil for deep hydration.', 'Wet soap, lather in hands, massage gently onto wet skin, and rinse thoroughly with clean water.')">
+                <div class="prod-info">
+                    <span class="badge-bestseller" data-en="Bestseller" data-hi="बेस्टसेलर">Bestseller</span>
+                    <div class="stars">★★★★★</div>
+                    <h3 onclick="openProductPage('Honey Almond Soap', 299, 'high-soap.png', 'A nourishing blend of pure honey and rich almond oil for deep hydration.', 'Wet soap, lather in hands, massage gently onto wet skin, and rinse thoroughly with clean water.')">Honey Almond Soap</h3>
+                    <div class="price-row">
+                        <span class="current-price">₹299</span>
+                        <span class="original-price">₹499</span>
+                    </div>
+                </div>
+                <button class="btn-add-grid" onclick="addToCart(event, 'Honey Almond Soap', 299, 'high-soap.png', 1)" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="prod-card">
+                <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Neem Tulsi Soap', 249, 'small-soap.png', 1)" title="Add to Cart">🛒</button>
+                <button class="wishlist-heart-btn" id="wishBtn-2" onclick="toggleWishlistItem(event, 'Neem Tulsi Soap', 249, 'small-soap.png', 'wishBtn-2')">♡</button>
+                <img src="small-soap.png" alt="Soap 2" onclick="openProductPage('Neem Tulsi Soap', 249, 'small-soap.png', 'Antibacterial neem and tulsi extracts for clear and glowing skin.', 'Apply generously on damp skin, work into rich lather, leave for 1 minute for best antibacterial results, and wash off.')">
+                <div class="prod-info">
+                    <span class="badge-bestseller" data-en="Organic" data-hi="ऑर्गेनिक">Organic</span>
+                    <div class="stars">★★★★★</div>
+                    <h3 onclick="openProductPage('Neem Tulsi Soap', 249, 'small-soap.png', 'Antibacterial neem and tulsi extracts for clear and glowing skin.', 'Apply generously on damp skin, work into rich lather, leave for 1 minute for best antibacterial results, and wash off.')">Neem Tulsi Soap</h3>
+                    <div class="price-row">
+                        <span class="current-price">₹249</span>
+                        <span class="original-price">₹399</span>
+                    </div>
+                </div>
+                <button class="btn-add-grid" onclick="addToCart(event, 'Neem Tulsi Soap', 249, 'small-soap.png', 1)" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="prod-card">
+                <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Lavender Bliss Soap', 329, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                <button class="wishlist-heart-btn" id="wishBtn-3" onclick="toggleWishlistItem(event, 'Lavender Bliss Soap', 329, 'high-soap.png', 'wishBtn-3')">♡</button>
+                <img src="high-soap.png" alt="Soap 3" onclick="openProductPage('Lavender Bliss Soap', 329, 'high-soap.png', 'Soothing lavender essential oil for ultimate relaxation and calm skin.', 'Use during evening bath to relax senses. Lather all over body and rinse clean.')">
+                <div class="prod-info">
+                    <span class="badge-bestseller" data-en="Relaxing" data-hi="शांत करने वाला">Relaxing</span>
+                    <div class="stars">★★★★★</div>
+                    <h3 onclick="openProductPage('Lavender Bliss Soap', 329, 'high-soap.png', 'Soothing lavender essential oil for ultimate relaxation and calm skin.', 'Use during evening bath to relax senses. Lather all over body and rinse clean.')">Lavender Bliss Soap</h3>
+                    <div class="price-row">
+                        <span class="current-price">₹329</span>
+                        <span class="original-price">₹549</span>
+                    </div>
+                </div>
+                <button class="btn-add-grid" onclick="addToCart(event, 'Lavender Bliss Soap', 329, 'high-soap.png', 1)" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="prod-card">
+                <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Charcoal Detox Soap', 279, 'small-soap.png', 1)" title="Add to Cart">🛒</button>
+                <button class="wishlist-heart-btn" id="wishBtn-4" onclick="toggleWishlistItem(event, 'Charcoal Detox Soap', 279, 'small-soap.png', 'wishBtn-4')">♡</button>
+                <img src="small-soap.png" alt="Soap 4" onclick="openProductPage('Charcoal Detox Soap', 279, 'small-soap.png', 'Active charcoal deep cleansing formula to remove dirt and toxins.', 'Gently massage onto wet face and body avoiding eye area, then rinse thoroughly with lukewarm water.')">
+                <div class="prod-info">
+                    <span class="badge-bestseller" data-en="Detox" data-hi="डेटॉक्स">Detox</span>
+                    <div class="stars">★★★★★</div>
+                    <h3 onclick="openProductPage('Charcoal Detox Soap', 279, 'small-soap.png', 'Active charcoal deep cleansing formula to remove dirt and toxins.', 'Gently massage onto wet face and body avoiding eye area, then rinse thoroughly with lukewarm water.')">Charcoal Detox Soap</h3>
+                    <div class="price-row">
+                        <span class="current-price">₹279</span>
+                        <span class="original-price">₹449</span>
+                    </div>
+                </div>
+                <button class="btn-add-grid" onclick="addToCart(event, 'Charcoal Detox Soap', 279, 'small-soap.png', 1)" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="prod-card">
+                <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Sandalwood Glow Soap', 349, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                <button class="wishlist-heart-btn" id="wishBtn-5" onclick="toggleWishlistItem(event, 'Sandalwood Glow Soap', 349, 'high-soap.png', 'wishBtn-5')">♡</button>
+                <img src="high-soap.png" alt="Soap 5" onclick="openProductPage('Sandalwood Glow Soap', 349, 'high-soap.png', 'Pure sandalwood extracts for natural brightness and clear skin tone.', 'Create a creamy lather, apply on face and body, leave for 2 minutes for natural glow, and rinse off.')">
+                <div class="prod-info">
+                    <span class="badge-bestseller" data-en="Glowing" data-hi="ग्लोइंग">Glowing</span>
+                    <div class="stars">★★★★★</div>
+                    <h3 onclick="openProductPage('Sandalwood Glow Soap', 349, 'high-soap.png', 'Pure sandalwood extracts for natural brightness and clear skin tone.', 'Create a creamy lather, apply on face and body, leave for 2 minutes for natural glow, and rinse off.')">Sandalwood Glow Soap</h3>
+                    <div class="price-row">
+                        <span class="current-price">₹349</span>
+                        <span class="original-price">₹599</span>
+                    </div>
+                </div>
+                <button class="btn-add-grid" onclick="addToCart(event, 'Sandalwood Glow Soap', 349, 'high-soap.png', 1)" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Section -->
+    <div class="reviews-section">
+        <h2 class="sec-title" style="margin-top:0;" data-en="Customer Reviews" data-hi="ग्राहक समीक्षाएँ">Customer Reviews</h2>
+        <div class="sec-sub" data-en="What our buyers say about us" data-hi="हमारे खरीदार हमारे बारे में क्या कहते हैं">What our buyers say about us</div>
+        
+        <button class="write-review-main-btn" onclick="toggleReviewForm()" data-en="Write a Review" data-hi="समीक्षा लिखें">Write a Review</button>
+
+        <!-- Review Form Box -->
+        <div class="review-form-box" id="reviewFormBox">
+            <h3 style="font-size:13px; color:#2E4433; margin-bottom:8px;" data-en="Share Your Experience" data-hi="अपना अनुभव साझा करें">Share Your Experience</h3>
+            <input type="text" id="reviewerNameInput" class="form-input" placeholder="Your Name / आपका नाम">
+            
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:4px;" data-en="Select Rating:" data-hi="रेटिंग चुनें:">Select Rating:</label>
+            <select id="reviewRatingInput" class="form-input">
+                <option value="5">★★★★★ (5 Stars)</option>
+                <option value="4">★★★★☆ (4 Stars)</option>
+                <option value="3">★★★☆☆ (3 Stars)</option>
+                <option value="2">★★☆☆☆ (2 Stars)</option>
+                <option value="1">★☆☆☆☆ (1 Star)</option>
+            </select>
+
+            <textarea id="reviewTextInput" class="form-input" placeholder="Write your review here... / अपनी समीक्षा यहाँ लिखें..." rows="2"></textarea>
+            <button onclick="submitReview()" style="background:#2E4433; color:#fff; border:none; padding:7px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;" data-en="Submit Review" data-hi="समीक्षा जमा करें">Submit Review</button>
+        </div>
+
+        <div class="reviews-grid" id="reviewsContainer">
+            <div class="review-box">
+                <button class="delete-review-btn" onclick="this.parentElement.remove()">Delete</button>
+                <div class="stars">★★★★★</div>
+                <p>"Very refreshing fragrance and keeps skin soft all day long!"</p>
+                <div class="reviewer-name">- Priya Sharma</div>
+            </div>
+            <div class="review-box">
+                <button class="delete-review-btn" onclick="this.parentElement.remove()">Delete</button>
+                <div class="stars">★★★★★</div>
+                <p>"Pure organic quality. Highly recommended for sensitive skin."</p>
+                <div class="reviewer-name">- Rahul Verma</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: Product Details -->
+    <div class="full-page-view" id="productFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="Product Details" data-hi="उत्पाद विवरण">Product Details</span>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="header-icon" onclick="toggleCart()" title="Cart" style="font-size:22px; padding:4px;">
+                    🛒<span class="cart-badge" id="cart-count-fp">0</span>
+                </div>
+                <button class="close-btn" onclick="closeProductPage()">×</button>
+            </div>
+        </div>
+        <div class="fp-body-content">
+            <div class="fp-img-container">
+                <img id="fpImg" src="" class="fp-img" alt="Product Image">
+            </div>
+            <h2 id="fpTitle" style="font-size:18px; color:#2E4433; margin-bottom:5px;"></h2>
+            
+            <div style="display:flex; align-items:center; gap:6px; margin-bottom:8px; cursor:pointer;" onclick="document.getElementById('prodReviewSection').scrollIntoView({behavior: 'smooth'});">
+                <span class="stars">★★★★★</span>
+                <span id="productReviewCount" style="font-size:11px; color:#557a5e; font-weight:600;">(0 Reviews)</span>
+            </div>
+
+            <div class="price-row" style="margin: 10px 0;">
+                <span id="fpPrice" class="current-price" style="font-size:18px;"></span>
+                <span class="original-price" style="font-size:12px;">₹499</span>
+            </div>
+            <p id="fpDesc" style="font-size:12px; color:#555; margin-bottom:10px;"></p>
+            
+            <!-- How to Use Section -->
+            <div style="background:#fafbf9; border:1px solid #dbe6d3; padding:10px; border-radius:6px; margin-bottom:12px;">
+                <div style="font-size:12px; font-weight:bold; color:#2E4433; margin-bottom:3px;" data-en="How to Use:" data-hi="इस्तेमाल करने का तरीका:">How to Use:</div>
+                <p id="fpUsage" style="font-size:11px; color:#444; font-style:italic;"></p>
+            </div>
+
+            <!-- Quantity Controls (+ / -) -->
+            <div class="qty-container">
+                <span style="font-size:13px; font-weight:bold; color:#2E4433;" data-en="Quantity:" data-hi="मात्रा:">Quantity:</span>
+                <button class="qty-btn" onclick="changeProductQty(-1)">-</button>
+                <span id="productQtyDisplay" class="qty-number">1</span>
+                <button class="qty-btn" onclick="changeProductQty(1)">+</button>
+            </div>
+
+            <div class="fp-actions">
+                <button class="btn-fp-cart" onclick="addCurrentToCart()" data-en="Add to Cart" data-hi="कार्ट में डालें">Add to Cart</button>
+                <button class="btn-fp-buynow" onclick="buyNowFromProduct()" data-en="Buy Now" data-hi="अभी खरीदें">Buy Now</button>
+            </div>
+
+            <!-- Product Specific Review Section -->
+            <div id="prodReviewSection" style="margin-top:25px; border-top:1px solid #dbe6d3; padding-top:15px;">
+                <h3 style="font-size:13px; color:#2E4433; margin-bottom:8px;" data-en="Rate & Review This Product" data-hi="इस उत्पाद को रेट और समीक्षा करें">Rate & Review This Product</h3>
+                <input type="text" id="prodReviewerName" class="form-input" placeholder="Your Name / आपका नाम">
+                <select id="prodReviewRating" class="form-input">
+                    <option value="5">★★★★★ (5 Stars)</option>
+                    <option value="4">★★★★☆ (4 Stars)</option>
+                    <option value="3">★★★☆☆ (3 Stars)</option>
+                    <option value="2">★★☆☆☆ (2 Stars)</option>
+                    <option value="1">★☆☆☆☆ (1 Star)</option>
+                </select>
+                <textarea id="prodReviewText" class="form-input" placeholder="Write product review... / इस उत्पाद के बारे में लिखें..." rows="2"></textarea>
+                <button onclick="submitProductReview()" style="background:#2E4433; color:#fff; border:none; padding:7px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;" data-en="Submit Product Review" data-hi="उत्पाद समीक्षा जमा करें">Submit Product Review</button>
+                
+                <div id="productReviewsList" style="margin-top:12px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: Cart -->
+    <div class="full-page-view" id="cartFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="Your Shopping Cart" data-hi="आपकी शॉपिंग कार्ट">Your Shopping Cart</span>
+            <button class="close-btn" onclick="toggleCart()">×</button>
+        </div>
+        <div class="fp-body-content" style="display: flex; flex-direction: column; justify-content: space-between; height: calc(100vh - 60px);">
+            <div id="cartItemsContainer" style="flex: 1; overflow-y: auto;">
+                <p style="text-align:center; color:#777; margin-top:40px;" data-en="Your cart is empty." data-hi="आपकी कार्ट खाली है।">Your cart is empty.</p>
+            </div>
+            
+            <div style="background: #fff; border-top: 1px solid #dbe6d3; padding: 15px 0 20px 0; margin-top: auto;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-weight:bold; font-size:16px; color:#2E4433;">
+                    <span data-en="Total:" data-hi="कुल:">Total:</span>
+                    <span id="cartTotalPrice">₹0</span>
+                </div>
+                <button class="btn-checkout" onclick="toggleCart(); toggleCheckoutPage();" data-en="Proceed to Checkout" data-hi="चेकआउट के लिए आगे बढ़ें">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: Checkout -->
+    <div class="full-page-view" id="checkoutFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="Checkout" data-hi="चेकआउट">Checkout</span>
+            <button class="close-btn" onclick="toggleCheckoutPage()">×</button>
+        </div>
+        <div class="fp-body-content">
+            <h3 style="font-size:15px; color:#2E4433; margin-bottom:12px;" data-en="Shipping Information" data-hi="शिपिंग जानकारी">Shipping Information</h3>
+            
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Full Name / पूरा नाम</label>
+            <input type="text" id="chkName" class="form-input" placeholder="Enter Full Name">
+
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Email Address / ईमेल आईडी</label>
+            <input type="email" id="chkEmail" class="form-input" placeholder="Enter Email Address">
+
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Mobile Number / मोबाइल नंबर</label>
+            <input type="tel" id="chkPhone" class="form-input" placeholder="Enter Mobile Number">
+
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Alternate Mobile Number / अल्टरनेट मोबाइल नंबर</label>
+            <input type="tel" id="chkAltPhone" class="form-input" placeholder="Enter Alternate Mobile Number">
+
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Delivery Address / पूरा एड्रेस</label>
+            <input type="text" id="chkAddress" class="form-input" placeholder="House No, Street, City">
+
+            <label style="font-size:11px; font-weight:bold; color:#2E4433; display:block; margin-bottom:3px;">Pincode / पिन कोड</label>
+            <input type="text" id="chkPincode" class="form-input" placeholder="Pincode">
+            
+            <h3 style="font-size:15px; color:#2E4433; margin:15px 0 8px 0;" data-en="Apply Coupon Code" data-hi="कूपन कोड लागू करें">Apply Coupon Code</h3>
+            <div style="display:flex; gap:8px; margin-bottom:15px;">
+                <input type="text" id="couponInput" class="form-input" placeholder="e.g. PK10" style="margin-bottom:0;">
+                <button onclick="applyCoupon()" style="background:#2E4433; color:#fff; border:none; padding:8px 14px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;" data-en="Apply" data-hi="लागू करें">Apply</button>
+            </div>
+            <p id="couponMsg" style="font-size:11px; color:#27ae60; margin-bottom:12px; display:none;"></p>
+
+            <h3 style="font-size:15px; color:#2E4433; margin:15px 0 8px 0;" data-en="Payment Method" data-hi="भुगतान का तरीका">Payment Method</h3>
+            <label style="font-size:12px; display:block; margin-bottom:6px;"><input type="radio" checked name="payMethod" value="cod"> <span data-en="Cash on Delivery (COD)" data-hi="कैश ऑन डिलीवरी (COD)">Cash on Delivery (COD)</span></label>
+            <label style="font-size:12px; display:block; margin-bottom:15px;"><input type="radio" name="payMethod" value="online"> <span data-en="Online Payment (UPI)" data-hi="ऑनलाइन भुगतान (UPI)">Online Payment (UPI)</span></label>
+            
+            <div style="margin-top: 25px; border-top: 1px solid #dbe6d3; padding-top: 15px; padding-bottom: 25px;">
+                <button onclick="processCheckoutOrder()" style="width:100%; background:#ff7a00; color:#fff; padding:14px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; text-transform:uppercase; font-size:14px;" data-en="Complete Order" data-hi="ऑर्डर पूरा करें">Complete Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: Contact Us -->
+    <div class="full-page-view" id="contactFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</span>
+            <button class="close-btn" onclick="toggleContactPage()">×</button>
+        </div>
+        <div class="fp-body-content">
+            <h2 style="font-size:18px; color:#2E4433; margin-bottom:15px;" data-en="Get in Touch with Velvet Aroma" data-hi="Velvet Aroma से संपर्क करें">Get in Touch with Velvet Aroma</h2>
+            <input type="text" id="contactFirstName" class="form-input" placeholder="First Name / पहला नाम">
+            <input type="text" id="contactLastName" class="form-input" placeholder="Last Name / उपनाम">
+            <input type="email" id="contactEmail" class="form-input" placeholder="Email Address / ईमेल पता">
+            <input type="tel" id="contactPhone" class="form-input" placeholder="Phone Number / फोन नंबर">
+            <textarea id="contactMessage" class="form-input" placeholder="Message / संदेश..." rows="4"></textarea>
+            <button onclick="submitContactToWhatsApp()" style="width:100%; background:#2E4433; color:#fff; padding:14px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; text-transform:uppercase; font-size:13px; margin-top:10px;" data-en="Submit to WhatsApp" data-hi="व्हाट्सएप पर भेजें">Submit to WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: About Us -->
+    <div class="full-page-view" id="aboutFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="About Us" data-hi="हमारे बारे में">About Us</span>
+            <button class="close-btn" onclick="toggleAboutPage()">×</button>
+        </div>
+        <div class="fp-body-content">
+            <h2 style="font-size:20px; color:#2E4433; margin-bottom:12px;" data-en="Welcome to Velvet Aroma" data-hi="Velvet Aroma में आपका स्वागत है">Welcome to Velvet Aroma</h2>
+            <p style="font-size:13px; color:#555; margin-bottom:12px;" data-en="Velvet Aroma brings you the finest luxury handmade natural soaps crafted with pure organic ingredients, essential oils, and utmost care for your skin nourishment." data-hi="Velvet Aroma आपके लिए शुद्ध ऑर्गेनिक सामग्री, आवश्यक तेलों और आपकी त्वचा के पोषण के लिए अत्यधिक देखभाल के साथ तैयार किए गए बेहतरीन लग्जरी हैंडमेड नेचुरल सोप लेकर आया है।">Velvet Aroma brings you the finest luxury handmade natural soaps crafted with pure organic ingredients, essential oils, and utmost care for your skin nourishment.</p>
+            <p style="font-size:13px; color:#555;" data-en="Our mission is to provide chemical-free, eco-friendly skincare solutions that rejuvenate your senses and give your skin a natural glowing radiance everyday." data-hi="हमारा मिशन रासायनिक मुक्त, पर्यावरण-अनुकूल स्किनकेयर समाधान प्रदान करना है जो आपकी इंद्रियों को तरोताज़ा करते हैं और आपकी त्वचा को हर दिन प्राकृतिक चमक देते हैं।">Our mission is to provide chemical-free, eco-friendly skincare solutions that rejuvenate your senses and give your skin a natural glowing radiance everyday.</p>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: All Shop Products -->
+    <div class="full-page-view" id="allShopFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="All Products - Velvet Aroma" data-hi="सभी उत्पाद - Velvet Aroma">All Products - Velvet Aroma</span>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div class="header-icon" onclick="toggleCart()" title="Cart" style="font-size:22px; padding:4px;">
+                    🛒<span class="cart-badge" id="cart-count-shop">0</span>
+                </div>
+                <button class="close-btn" onclick="openAllShopPage()">×</button>
+            </div>
+        </div>
+        <div class="fp-body-content">
+            <div class="products-slider-wrapper" style="padding:0;">
+                <div class="reviews-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="prod-card" style="max-width:100%;">
+                        <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Honey Almond Soap', 299, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                        <img src="high-soap.png" alt="Soap 1" onclick="openProductPage('Honey Almond Soap', 299, 'high-soap.png', 'A nourishing blend of pure honey and rich almond oil for deep hydration.', 'Wet soap, lather in hands, massage onto skin and rinse thoroughly.')">
+                        <div class="prod-info">
+                            <span class="badge-bestseller">Bestseller</span>
+                            <div class="stars">★★★★★</div>
+                            <h3 onclick="openProductPage('Honey Almond Soap', 299, 'high-soap.png', 'A nourishing blend of pure honey and rich almond oil for deep hydration.', 'Wet soap, lather in hands, massage onto skin and rinse thoroughly.')">Honey Almond Soap</h3>
+                            <div class="price-row"><span class="current-price">₹299</span></div>
+                        </div>
+                        <button class="btn-add-grid" onclick="addToCart(event, 'Honey Almond Soap', 299, 'high-soap.png', 1)">Add to Cart</button>
+                    </div>
+                    <div class="prod-card" style="max-width:100%;">
+                        <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Neem Tulsi Soap', 249, 'small-soap.png', 1)" title="Add to Cart">🛒</button>
+                        <img src="small-soap.png" alt="Soap 2" onclick="openProductPage('Neem Tulsi Soap', 249, 'small-soap.png', 'Antibacterial neem and tulsi extracts for clear and glowing skin.', 'Apply on damp skin, work into rich lather, leave for 1 minute and wash off.')">
+                        <div class="prod-info">
+                            <span class="badge-bestseller">Organic</span>
+                            <div class="stars">★★★★★</div>
+                            <h3 onclick="openProductPage('Neem Tulsi Soap', 249, 'small-soap.png', 'Antibacterial neem and tulsi extracts for clear and glowing skin.', 'Apply on damp skin, work into rich lather, leave for 1 minute and wash off.')">Neem Tulsi Soap</h3>
+                            <div class="price-row"><span class="current-price">₹249</span></div>
+                        </div>
+                        <button class="btn-add-grid" onclick="addToCart(event, 'Neem Tulsi Soap', 249, 'small-soap.png', 1)">Add to Cart</button>
+                    </div>
+                    <div class="prod-card" style="max-width:100%;">
+                        <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Lavender Bliss Soap', 329, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                        <img src="high-soap.png" alt="Soap 3" onclick="openProductPage('Lavender Bliss Soap', 329, 'high-soap.png', 'Soothing lavender essential oil for ultimate relaxation and calm skin.', 'Use during evening bath to relax senses. Lather and rinse clean.')">
+                        <div class="prod-info">
+                            <span class="badge-bestseller">Relaxing</span>
+                            <div class="stars">★★★★★</div>
+                            <h3 onclick="openProductPage('Lavender Bliss Soap', 329, 'high-soap.png', 'Soothing lavender essential oil for ultimate relaxation and calm skin.', 'Use during evening bath to relax senses. Lather and rinse clean.')">Lavender Bliss Soap</h3>
+                            <div class="price-row"><span class="current-price">₹329</span></div>
+                        </div>
+                        <button class="btn-add-grid" onclick="addToCart(event, 'Lavender Bliss Soap', 329, 'high-soap.png', 1)">Add to Cart</button>
+                    </div>
+                    <div class="prod-card" style="max-width:100%;">
+                        <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Charcoal Detox Soap', 279, 'small-soap.png', 1)" title="Add to Cart">🛒</button>
+                        <img src="small-soap.png" alt="Soap 4" onclick="openProductPage('Charcoal Detox Soap', 279, 'small-soap.png', 'Active charcoal deep cleansing formula to remove dirt and toxins.', 'Gently massage onto wet face and body avoiding eyes, then rinse thoroughly.')">
+                        <div class="prod-info">
+                            <span class="badge-bestseller">Detox</span>
+                            <div class="stars">★★★★★</div>
+                            <h3 onclick="openProductPage('Charcoal Detox Soap', 279, 'small-soap.png', 'Active charcoal deep cleansing formula to remove dirt and toxins.', 'Gently massage onto wet face and body avoiding eyes, then rinse thoroughly.')">Charcoal Detox Soap</h3>
+                            <div class="price-row"><span class="current-price">₹279</span></div>
+                        </div>
+                        <button class="btn-add-grid" onclick="addToCart(event, 'Charcoal Detox Soap', 279, 'small-soap.png', 1)">Add to Cart</button>
+                    </div>
+                    <div class="prod-card" style="max-width:100%;">
+                        <button class="prod-cart-overlay-btn" onclick="addToCart(event, 'Sandalwood Glow Soap', 349, 'high-soap.png', 1)" title="Add to Cart">🛒</button>
+                        <img src="high-soap.png" alt="Soap 5" onclick="openProductPage('Sandalwood Glow Soap', 349, 'high-soap.png', 'Pure sandalwood extracts for natural brightness and clear skin tone.', 'Create a creamy lather, apply on face and body, leave for 2 minutes, and rinse off.')">
+                        <div class="prod-info">
+                            <span class="badge-bestseller">Glowing</span>
+                            <div class="stars">★★★★★</div>
+                            <h3 onclick="openProductPage('Sandalwood Glow Soap', 349, 'high-soap.png', 'Pure sandalwood extracts for natural brightness and clear skin tone.', 'Create a creamy lather, apply on face and body, leave for 2 minutes, and rinse off.')">Sandalwood Glow Soap</h3>
+                            <div class="price-row"><span class="current-price">₹349</span></div>
+                        </div>
+                        <button class="btn-add-grid" onclick="addToCart(event, 'Sandalwood Glow Soap', 349, 'high-soap.png', 1)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULL PAGE: User Account -->
+    <div class="full-page-view" id="accountFullPage">
+        <div class="fp-top-header">
+            <span style="font-weight:bold; font-size:14px; color:#2E4433;" data-en="Customer Account" data-hi="कस्टमर अकाउंट">Customer Account</span>
+            <button class="close-btn" onclick="toggleAccountPage()">×</button>
+        </div>
+        <div class="fp-body-content">
+            <h2 style="font-size:18px; color:#2E4433; margin-bottom:15px;" data-en="Your Account & Orders" data-hi="आपका अकाउंट और आर्डर">Your Account & Orders</h2>
+            <div style="background:#fafbf9; padding:12px; border:1px solid #dbe6d3; border-radius:8px; margin-bottom:20px;">
+                <input type="text" id="userNameInput" class="form-input" placeholder="Enter Name / अपना नाम (e.g. PAR)">
+                <input type="email" id="userEmailInput" class="form-input" placeholder="Email Address / ईमेल">
+                <button onclick="saveUserProfile()" style="width:100%; background:#2E4433; color:#fff; padding:10px; border:none; border-radius:6px; font-weight:bold; cursor:pointer; text-transform:uppercase; font-size:12px;" data-en="Save Profile" data-hi="प्रोफ़ाइल सेव करें">Save Profile</button>
+            </div>
+
+            <h3 style="font-size:15px; color:#2E4433; margin-bottom:10px;" data-en="My Order History" data-hi="मेरा आर्डर इतिहास">My Order History</h3>
+            <div id="userOrdersContainer">
+                <p style="font-size:12px; color:#777; font-style:italic;" data-en="No orders placed yet." data-hi="अभी तक कोई आर्डर नहीं दिया गया है।">No orders placed yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Drawer -->
+    <div class="wishlist-drawer" id="wishlistDrawer">
+        <div class="drawer-top">
+            <span data-en="Your Wishlist" data-hi="आपकी विशलिस्ट">Your Wishlist</span>
+            <button class="close-btn" onclick="toggleWishlist()">×</button>
+        </div>
+        <div class="drawer-body" id="wishlistContainer">
+            <p style="text-align:center; color:#777; margin-top:20px;" data-en="Your wishlist is empty." data-hi="आपकी विशलिस्ट खाली है।">Your wishlist is empty.</p>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-drawer" id="mobileMenu">
+        <div class="drawer-top">
+            <span data-en="Menu" data-hi="मेनू">Menu</span>
+            <button class="close-btn" onclick="toggleMobileMenu()">×</button>
+        </div>
+        <div class="drawer-body">
+            <p style="padding:10px; font-weight:bold; cursor:pointer; border-bottom:1px solid #eee;" onclick="toggleMobileMenu()" data-en="Home" data-hi="होम">Home</p>
+            <p style="padding:10px; font-weight:bold; cursor:pointer; border-bottom:1px solid #eee;" onclick="toggleMobileMenu(); toggleAccountPage();" data-en="My Account" data-hi="मेरा अकाउंट">My Account</p>
+            <p style="padding:10px; font-weight:bold; cursor:pointer; border-bottom:1px solid #eee;" onclick="toggleMobileMenu(); openAllShopPage();" data-en="Shop All" data-hi="सभी खरीदें">Shop All</p>
+            <p style="padding:10px; font-weight:bold; cursor:pointer; border-bottom:1px solid #eee;" onclick="toggleMobileMenu(); toggleAboutPage();" data-en="About Us" data-hi="हमारे बारे में">About Us</p>
+            <p style="padding:10px; font-weight:bold; cursor:pointer; border-bottom:1px solid #eee;" onclick="toggleMobileMenu(); toggleContactPage();" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</p>
+            
+            <button class="lang-toggle-btn" onclick="switchLanguage()">🌐 हिंदी / English</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Velvet Aroma. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Logic with LocalStorage & WhatsApp Order Integration -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('va_cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('va_wishlist')) || [];
+        let userOrders = JSON.parse(localStorage.getItem('va_orders')) || [];
+        let currentProduct = {};
+        let currentProductQty = 1;
+        let currentLang = 'en';
+        let discountApplied = false;
+        let productReviewsStore = JSON.parse(localStorage.getItem('va_reviews')) || {};
+
+        // Load saved user profile on start
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('va_user_name');
+            const savedEmail = localStorage.getItem('va_user_email');
+            if(savedName) {
+                document.getElementById('userNameInput').value = savedName;
+            }
+            if(savedEmail) {
+                document.getElementById('userEmailInput').value = savedEmail;
+            }
+            updateCartUI();
+            updateWishlistUI();
+        });
+
+        // Mobile back button handling (closes open overlays/modals instead of leaving page)
+        window.addEventListener('popstate', function(event) {
+            closeAllOverlays();
+        });
+
+        function pushOverlayState() {
+            history.pushState({modalOpen: true}, '');
+        }
+
+        function closeAllOverlays() {
+            document.querySelectorAll('.full-page-view.open, .wishlist-drawer.open, .mobile-menu-drawer.open').forEach(el => {
+                el.classList.remove('open');
+            });
+            document.body.classList.remove('lock-scroll');
+        }
+
+        function toggleCart() {
+            const cartPage = document.getElementById('cartFullPage');
+            cartPage.classList.toggle('open');
+            const isOpen = cartPage.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleWishlist() {
+            const wishDrawer = document.getElementById('wishlistDrawer');
+            wishDrawer.classList.toggle('open');
+            const isOpen = wishDrawer.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+            const isOpen = menu.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleReviewForm() {
+            document.getElementById('reviewFormBox').classList.toggle('open');
+        }
+
+        function toggleCheckoutPage() {
+            const checkout = document.getElementById('checkoutFullPage');
+            checkout.classList.toggle('open');
+            const isOpen = checkout.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleContactPage() {
+            const contact = document.getElementById('contactFullPage');
+            contact.classList.toggle('open');
+            const isOpen = contact.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleAboutPage() {
+            const about = document.getElementById('aboutFullPage');
+            about.classList.toggle('open');
+            const isOpen = about.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function openAllShopPage() {
+            const allShop = document.getElementById('allShopFullPage');
+            allShop.classList.toggle('open');
+            const isOpen = allShop.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) pushOverlayState();
+        }
+
+        function toggleAccountPage() {
+            const acc = document.getElementById('accountFullPage');
+            acc.classList.toggle('open');
+            const isOpen = acc.classList.contains('open');
+            document.body.classList.toggle('lock-scroll', isOpen);
+            if(isOpen) {
+                pushOverlayState();
+                renderUserOrders();
+            }
+        }
+
+        function saveUserProfile() {
+            const nameInput = document.getElementById('userNameInput').value.trim();
+            const emailInput = document.getElementById('userEmailInput').value.trim();
+            if(nameInput) {
+                localStorage.setItem('va_user_name', nameInput);
+                localStorage.setItem('va_user_email', emailInput);
+                alert(currentLang === 'hi' ? 'अकाउंट और प्रोफ़ाइल सफलतापूर्वक सेव हो गया है!' : 'Profile saved successfully!');
+                toggleAccountPage();
+            } else {
+                alert(currentLang === 'hi' ? 'कृपया अपना नाम दर्ज करें।' : 'Please enter your name.');
+            }
+        }
+
+        function applyCoupon() {
+            const code = document.getElementById('couponInput').value.trim().toUpperCase();
+            const msgEl = document.getElementById('couponMsg');
+            if(code === 'PK10') {
+                discountApplied = true;
+                msgEl.innerText = currentLang === 'hi' ? 'कूपन लागू हुआ: 10% छूट मिल गई!' : 'Coupon Applied: 10% OFF!';
+                msgEl.style.display = 'block';
+                updateCartUI();
+            } else {
+                alert(currentLang === 'hi' ? 'अमान्य कूपन कोड!' : 'Invalid Coupon Code!');
+            }
+        }
+
+        function submitContactToWhatsApp() {
+            const fname = document.getElementById('contactFirstName').value;
+            const lname = document.getElementById('contactLastName').value;
+            const email = document.getElementById('contactEmail').value;
+            const phone = document.getElementById('contactPhone').value;
+            const msg = document.getElementById('contactMessage').value;
+
+            if(!fname || !phone || !msg) {
+                alert(currentLang === 'hi' ? 'कृपया नाम, फोन नंबर और संदेश भरें।' : 'Please fill in name, phone number, and message.');
+                return;
+            }
+
+            const whatsappText = `New Customer Inquiry:%0AName: ${fname} ${lname}%0APhone: ${phone}%0AEmail: ${email}%0AMessage: ${msg}`;
+            const merchantNumber = "919876543210"; 
+            window.open(`https://wa.me/${merchantNumber}?text=${whatsappText}`, '_blank');
+            toggleContactPage();
+        }
+
+        function openProductPage(name, price, img, desc, usage) {
+            currentProduct = { name, price, img, desc, usage };
+            currentProductQty = 1;
+            document.getElementById('productQtyDisplay').innerText = currentProductQty;
+            document.getElementById('fpImg').src = img;
+            document.getElementById('fpTitle').innerText = name;
+            document.getElementById('fpPrice').innerText = '₹' + price;
+            document.getElementById('fpDesc').innerText = desc;
+            document.getElementById('fpUsage').innerText = usage;
+            
+            renderProductReviews(name);
+            
+            const prodPage = document.getElementById('productFullPage');
+            prodPage.classList.add('open');
+            document.body.classList.add('lock-scroll');
+            pushOverlayState();
+        }
+
+        function closeProductPage() {
+            const prodPage = document.getElementById('productFullPage');
+            prodPage.classList.remove('open');
+            document.body.classList.remove('lock-scroll');
+        }
+
+        function changeProductQty(val) {
+            currentProductQty += val;
+            if(currentProductQty < 1) currentProductQty = 1;
+            document.getElementById('productQtyDisplay').innerText = currentProductQty;
+        }
+
+        function addToCart(event, name, price, img, qty = 1) {
+            if(event) event.stopPropagation();
+            const existing = cart.find(item => item.name === name);
+            if(existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ name, price, img, qty });
+            }
+            localStorage.setItem('va_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function addCurrentToCart() {
+            if(currentProduct.name) {
+                addToCart(null, currentProduct.name, currentProduct.price, currentProduct.img, currentProductQty);
+            }
+        }
+
+        function buyNowFromProduct() {
+            if(currentProduct.name) {
+                addToCart(null, currentProduct.name, currentProduct.price, currentProduct.img, currentProductQty);
+                closeProductPage();
+                toggleCheckoutPage();
+            }
+        }
+
+        function updateCartItemQty(index, val) {
+            cart[index].qty += val;
+            if(cart[index].qty < 1) {
+                cart.splice(index, 1);
+            }
+            localStorage.setItem('va_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const totalPriceEl = document.getElementById('cartTotalPrice');
+
+            let totalCount = 0;
+            cart.forEach(item => totalCount += item.qty);
+            
+            document.querySelectorAll('.cart-badge, #cart-count, #cart-count-fp, #cart-count-shop').forEach(el => {
+                el.innerText = totalCount;
+            });
+
+            if (cart.length === 0) {
+                container.innerHTML = currentLang === 'hi' ? '<p style="text-align:center; color:#777; margin-top:40px;">आपकी कार्ट खाली है।</p>' : '<p style="text-align:center; color:#777; margin-top:40px;">Your cart is empty.</p>';
+                totalPriceEl.innerText = '₹0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += (item.price * item.qty);
+                html += `
+                    <div class="cart-item-card">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div style="flex:1;">
+                            <div style="font-size:12px; font-weight:bold; color:#2E4433;">${item.name}</div>
+                            <div style="font-size:11px; color:#555;">₹${item.price} x ${item.qty} = ₹${item.price * item.qty}</div>
+                            <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+                                <button onclick="updateCartItemQty(${index}, -1)" style="width:22px; height:22px; background:#2E4433; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">-</button>
+                                <span style="font-size:12px; font-weight:bold;">${item.qty}</span>
+                                <button onclick="updateCartItemQty(${index}, 1)" style="width:22px; height:22px; background:#2E4433; color:#fff; border:none; border-radius:4px; font-weight:bold; cursor:pointer;">+</button>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:16px;">🗑️</button>
+                    </div>
+                `;
+            });
+
+            if(discountApplied) {
+                total = total * 0.9;
+            }
+
+            container.innerHTML = html;
+            totalPriceEl.innerText = '₹' + total.toFixed(0);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('va_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        // Process Checkout & Send Order Directly to Merchant WhatsApp
+        function processCheckoutOrder() {
+            const name = document.getElementById('chkName').value.trim();
+            const email = document.getElementById('chkEmail').value.trim();
+            const phone = document.getElementById('chkPhone').value.trim();
+            const altPhone = document.getElementById('chkAltPhone').value.trim();
+            const address = document.getElementById('chkAddress').value.trim();
+            const pincode = document.getElementById('chkPincode').value.trim();
+            const payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+
+            if(!name || !phone || !address || !pincode) {
+                alert(currentLang === 'hi' ? 'कृपया सभी आवश्यक शिपिंग विवरण भरें।' : 'Please fill in all required shipping details.');
+                return;
+            }
+
+            if(cart.length === 0) {
+                alert(currentLang === 'hi' ? 'आपकी कार्ट खाली है!' : 'Your cart is empty!');
+                return;
+            }
+
+            let totalAmt = 0;
+            cart.forEach(item => totalAmt += (item.price * item.qty));
+            if(discountApplied) totalAmt = totalAmt * 0.9;
+
+            const orderId = 'VA-' + Math.floor(100000 + Math.random() * 900000);
+            let itemsTextSummary = cart.map(i => `${i.name} (x${i.qty} - ₹${i.price * i.qty})`).join(', ');
+
+            // Send order details to merchant WhatsApp
+            const merchantNumber = "919876543210"; // Your merchant WhatsApp number
+            const waOrderText = `🛍️ *New Order Received!*:%0A*Order ID:* ${orderId}%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Alt Phone:* ${altPhone || 'N/A'}%0A*Email:* ${email || 'N/A'}%0A*Address:* ${address}, Pincode: ${pincode}%0A*Items:* ${itemsTextSummary}%0A*Total:* ₹${totalAmt.toFixed(0)}%0A*Payment:* ${payMethod.toUpperCase()}`;
+
+            if(payMethod === 'online') {
+                const merchantUpi = "parveen@upi"; 
+                const upiLink = `upi://pay?pa=${merchantUpi}&pn=VelvetAroma&am=${totalAmt.toFixed(2)}&cu=INR`;
+                window.location.href = upiLink;
+            }
+
+            const newOrder = {
+                id: orderId,
+                items: [...cart],
+                total: totalAmt.toFixed(0),
+                date: new Date().toLocaleDateString(),
+                status: 'Processing',
+                shippingStatus: 'Expected Shipping within 24 Hours'
+            };
+
+            userOrders.unshift(newOrder);
+            localStorage.setItem('va_orders', JSON.stringify(userOrders));
+            
+            cart = [];
+            localStorage.setItem('va_cart', JSON.stringify(cart));
+            updateCartUI();
+
+            toggleCheckoutPage();
+            
+            // Open WhatsApp with order details
+            window.open(`https://wa.me/${merchantNumber}?text=${waOrderText}`, '_blank');
+            
+            alert(currentLang === 'hi' ? '🎉 आर्डर सफलतापूर्वक पूरा हो गया! व्हाट्सएप पर डिटेल्स भेज दी गई हैं।' : '🎉 Order placed successfully! Order details sent via WhatsApp.');
+        }
+
+        function renderUserOrders() {
+            const container = document.getElementById('userOrdersContainer');
+            if(userOrders.length === 0) {
+                container.innerHTML = currentLang === 'hi' ? '<p style="font-size:12px; color:#777; font-style:italic;">अभी तक कोई आर्डर नहीं दिया गया है।</p>' : '<p style="font-size:12px; color:#777; font-style:italic;">No orders placed yet.</p>';
+                return;
+            }
+
+            let html = '';
+            userOrders.forEach((order, index) => {
+                let itemsText = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+                let statusColor = order.status === 'Cancelled' ? '#e74c3c' : '#27ae60';
+                html += `
+                    <div style="background:#fff; border:1px solid #dbe6d3; padding:10px; border-radius:6px; margin-bottom:10px; font-size:11px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:bold; color:#2E4433; margin-bottom:4px;">
+                            <span>Order ID: ${order.id}</span>
+                            <span style="color:${statusColor};">${order.status}</span>
+                        </div>
+                        <div style="color:#555; margin-bottom:3px;">Items: ${itemsText}</div>
+                        <div style="color:#555; margin-bottom:3px;">Total: ₹${order.total} | Date: ${order.date}</div>
+                        <div style="color:#557a5e; font-weight:600; margin-bottom:6px;">📦 ${order.shippingStatus}</div>
+                        ${order.status !== 'Cancelled' ? `<button onclick="cancelUserOrder(${index})" style="background:#fce4e4; color:#e74c3c; border:none; padding:4px 8px; border-radius:4px; font-weight:bold; cursor:pointer; font-size:10px;">Cancel Order</button>` : ''}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function cancelUserOrder(index) {
+            if(confirm(currentLang === 'hi' ? 'क्या आप वाकई इस आर्डर को कैंसिल करना चाहते हैं?' : 'Are you sure you want to cancel this order?')) {
+                userOrders[index].status = 'Cancelled';
+                userOrders[index].shippingStatus = 'Product Order Cancelled';
+                localStorage.setItem('va_orders', JSON.stringify(userOrders));
+                renderUserOrders();
+            }
+        }
+
+        function toggleWishlistItem(event, name, price, img, btnId) {
+            if(event) event.stopPropagation();
+            const btnEl = document.getElementById(btnId);
+            const index = wishlist.findIndex(item => item.name === name);
+            if(index > -1) {
+                wishlist.splice(index, 1);
+                if(btnEl) {
+                    btnEl.classList.remove('active');
+                    btnEl.innerHTML = '♡';
+                }
+            } else {
+                wishlist.push({ name, price, img });
+                if(btnEl) {
+                    btnEl.classList.add('active');
+                    btnEl.innerHTML = '♥';
+                }
+            }
+            localStorage.setItem('va_wishlist', JSON.stringify(wishlist));
+            updateWishlistUI();
+        }
+
+        function updateWishlistUI() {
+            const container = document.getElementById('wishlistContainer');
+            const countBadge = document.getElementById('wish-count');
+            countBadge.innerText = wishlist.length;
+
+            if (wishlist.length === 0) {
+                container.innerHTML = currentLang === 'hi' ? '<p style="text-align:center; color:#777; margin-top:20px;">आपकी विशलिस्ट खाली है।</p>' : '<p style="text-align:center; color:#777; margin-top:20px;">Your wishlist is empty.</p>';
+                return;
+            }
+
+            let html = '';
+            wishlist.forEach((item, index) => {
+                html += `
+                    <div class="cart-item-card">
+                        <img src="${item.img}" class="cart-item-img">
+                        <div style="flex:1;">
+                            <div style="font-size:12px; font-weight:bold; color:#2E4433;">${item.name}</div>
+                            <div style="font-size:11px; color:#555;">₹${item.price}</div>
+                        </div>
+                        <button onclick="addToCart(event, '${item.name}', ${item.price}, '${item.img}', 1)" style="background:#2E4433; color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:10px; cursor:pointer;" data-en="Add" data-hi="जोड़ें">Add</button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function submitProductReview() {
+            const name = document.getElementById('prodReviewerName').value.trim();
+            const text = document.getElementById('prodReviewText').value.trim();
+            const rating = document.getElementById('prodReviewRating').value;
+            const prodName = currentProduct.name;
+
+            if(!name || !text) {
+                alert(currentLang === 'hi' ? 'कृपया नाम और समीक्षा दर्ज करें।' : 'Please enter name and review.');
+                return;
+            }
+
+            if(!productReviewsStore[prodName]) {
+                productReviewsStore[prodName] = [];
+            }
+
+            productReviewsStore[prodName].push({ name, text, rating });
+            localStorage.setItem('va_reviews', JSON.stringify(productReviewsStore));
+
+            document.getElementById('prodReviewerName').value = '';
+            document.getElementById('prodReviewText').value = '';
+
+            renderProductReviews(prodName);
+        }
+
+        function renderProductReviews(prodName) {
+            const listEl = document.getElementById('productReviewsList');
+            const countEl = document.getElementById('productReviewCount');
+            const reviews = productReviewsStore[prodName] || [];
+
+            countEl.innerText = `(${reviews.length} Reviews)`;
+
+            if(reviews.length === 0) {
+                listEl.innerHTML = currentLang === 'hi' ? '<p style="font-size:11px; color:#777; font-style:italic;">अभी कोई समीक्षा नहीं है (0 Reviews)</p>' : '<p style="font-size:11px; color:#777; font-style:italic;">No reviews yet (0 Reviews)</p>';
+                return;
+            }
+
+            let html = '';
+            reviews.forEach((rev, idx) => {
+                let stars = '';
+                for(let i=0; i<rev.rating; i++) stars += '★';
+                html += `
+                    <div style="background:#fafbf9; padding:8px; border:1px solid #dbe6d3; border-radius:6px; margin-top:6px; position:relative;">
+                        <button onclick="deleteProductReview('${prodName}', ${idx})" style="position:absolute; top:6px; right:6px; background:#fce4e4; color:#e74c3c; border:none; padding:2px 5px; border-radius:3px; font-size:9px; cursor:pointer;">Delete</button>
+                        <div class="stars" style="font-size:9px;">${stars}</div>
+                        <p style="font-size:11px; color:#444; font-style:italic; margin:2px 0;">"${rev.text}"</p>
+                        <div style="font-size:10px; font-weight:bold; color:#2E4433;">- ${rev.name}</div>
+                    </div>
+                `;
+            });
+            listEl.innerHTML = html;
+        }
+
+        function deleteProductReview(prodName, idx) {
+            if(productReviewsStore[prodName]) {
+                productReviewsStore[prodName].splice(idx, 1);
+                localStorage.setItem('va_reviews', JSON.stringify(productReviewsStore));
+                renderProductReviews(prodName);
+            }
+        }
+
+        function submitReview() {
+            const name = document.getElementById('reviewerNameInput').value;
+            const text = document.getElementById('reviewTextInput').value;
+            const rating = document.getElementById('reviewRatingInput').value;
+            
+            if(!name || !text) {
+                alert(currentLang === 'hi' ? 'कृपया नाम और समीक्षा दोनों भरें।' : 'Please fill in both name and review.');
+                return;
+            }
+
+            let starsHtml = '';
+            for(let i=0; i<rating; i++) starsHtml += '★';
+
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            const newBox = document.createElement('div');
+            newBox.className = 'review-box';
+            newBox.innerHTML = `
+                <button class="delete-review-btn" onclick="this.parentElement.remove()">Delete</button>
+                <div class="stars">${starsHtml}</div>
+                <p>"${text}"</p>
+                <div class="reviewer-name">- ${name}</div>
+            `;
+            reviewsContainer.prepend(newBox);
+
+            document.getElementById('reviewerNameInput').value = '';
+            document.getElementById('reviewTextInput').value = '';
+            toggleReviewForm();
+        }
+
+        function switchLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                const translation = el.getAttribute(`data-${currentLang}`);
+                if (translation) {
+                    el.innerText = translation;
+                }
+            });
+            updateCartUI();
+            updateWishlistUI();
+        }
+    </script>
+</body>
+</html>
